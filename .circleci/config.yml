@@ -6,14 +6,6 @@ jobs:
     working_directory: ~/
     steps:
       - setup_remote_docker
-      - restore_cache:
-          keys:
-            - composer-v1-{{ .Branch }}-{{ .Revision }}-{{ .BuildNum }}
-            - composer-v1-{{ .Branch }}-{{ .Revision }}
-            - composer-v1-{{ .Branch }}
-            - composer-v1
-      - run: |
-          if [[ -d source/cache ]]; then ls -al source/cache; fi
       - run: activate-gcloud-account.sh
       - run: mkdir -p /tmp/workspace/var
       - run: mkdir -p /tmp/workspace/src
