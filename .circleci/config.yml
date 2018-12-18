@@ -36,4 +36,4 @@ jobs:
           "$MYSQL_USERNAME" \
           "$MYSQL_PASSWORD" \
           "$STATELESS_BUCKET_LOCATION" \
-          | ./configure.sh
+          | ~/planet4-nro-generator/configure.sh
