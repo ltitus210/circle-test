@@ -12,4 +12,28 @@ jobs:
       - run: echo "${CIRCLE_BUILD_NUM}" > /tmp/workspace/var/circle-build-num
       - run: git clone https://github.com/greenpeace/planet4-nro-generator.git
       - run: cd planet4-nro-generator
-      - run: printf "%s\n" "$CIRCLE_TOKEN" "$GITHUB_OAUTH_TOKEN"
+      - run: echo "${PRIVKEY}" > id_rsa && chmod 600 id_rsa
+      - run: git config --global user.email "larry.titus@greenpeace.org"
+      - run: git config --global user.name "Larry Titus"
+      - run: >
+          printf "%s\n" \
+          "$CIRCLE_TOKEN" \
+          "$GITHUB_OAUTH_TOKEN" \
+          "$MYSQL_PRODUCTION_ROOT_USER" \
+          "$MYSQL_PRODUCTION_ROOT_PASSWORD" \
+          "$MYSQL_DEVELOPMENT_ROOT_USER" \
+          "$MYSQL_DEVELOPMENT_ROOT_PASSWORD" \
+          "$NRO" \
+          "$APP_HOSTPATH" \
+          "$GITHUB_REPOSITORY_NAME" \
+          "$CONTAINER_PREFIX" \
+          "$GITHUB_USER_EMAIL" \
+          "$GITHUB_USER_NAME" \
+          "$MAKE_DEVELOP" \
+          "$MAKE_RELEASE" \
+          "$MAKE_MASTER" \
+          "$NEWRELIC_APPNAME" \
+          "$MYSQL_USERNAME" \
+          "$MYSQL_PASSWORD" \
+          "$STATELESS_BUCKET_LOCATION" \
+          | ./configure.sh
