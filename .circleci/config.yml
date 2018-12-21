@@ -38,3 +38,4 @@ jobs:
           "$MYSQL_PASSWORD" \
           "$STATELESS_BUCKET_LOCATION" \
           | ./configure.sh
+      - run: cd ~/planet4-nro-generator/ && printf "n\n" | make run
