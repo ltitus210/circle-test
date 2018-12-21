@@ -11,7 +11,7 @@ jobs:
       - run: mkdir -p /tmp/workspace/src
       - run: echo "${CIRCLE_BUILD_NUM}" > /tmp/workspace/var/circle-build-num
       - run: git clone https://github.com/greenpeace/planet4-nro-generator.git
-      - run: echo "${PRIVKEY}" > ~/planet4-nro-generator/id_rsa && chmod 600 ~/planet4-nro-generator/id_rsa
+      - run: echo "${PRIVKEY}" | base64 --decode > ~/planet4-nro-generator/id_rsa && chmod 600 ~/planet4-nro-generator/id_rsa
       - run: git config --global user.email "larry.titus@greenpeace.org"
       - run: git config --global user.name "Larry Titus"
       - run: sed -i '/-v/d' ~/planet4-nro-generator/Makefile
