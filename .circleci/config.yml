@@ -15,6 +15,7 @@ jobs:
       - run: git config --global user.email "larry.titus@greenpeace.org"
       - run: git config --global user.name "Larry Titus"
       - run: sed -i '/-v/d' ~/planet4-nro-generator/Makefile
+      - run: sed -i 's/-ti/-i/g' ~/planet4-nro-generator/Makefile
       - run: sed -i 's/VOLUME \/app\/secrets/COPY .\/id_rsa \/root\/.ssh\//g' ~/planet4-nro-generator/Dockerfile
       - run: >
           cd ~/planet4-nro-generator/ && printf "%s\n" \
