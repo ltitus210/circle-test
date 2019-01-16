@@ -13,8 +13,8 @@ jobs:
       - run: git clone https://github.com/greenpeace/planet4-nro-generator.git
       - run: cd ~/planet4-nro-generator && git checkout -b develop origin/develop
       - run: echo "${PRIVKEY}" | base64 --decode > ~/planet4-nro-generator/id_rsa && chmod 600 ~/planet4-nro-generator/id_rsa
-      - run: git config --global user.email "larry.titus@greenpeace.org"
-      - run: git config --global user.name "Larry Titus"
+      - run: git config --global user.email "circleci@greenpeace.org"
+      - run: git config --global user.name "Circle CI - NRO Generator"
       - run: sed -i 's/VOLUME \/app\/secrets/COPY .\/id_rsa \/root\/.ssh\//g' ~/planet4-nro-generator/Dockerfile
       - run: >
           cd ~/planet4-nro-generator/ && printf "%s\n" \
@@ -26,6 +26,10 @@ jobs:
           "$MYSQL_DEVELOPMENT_ROOT_PASSWORD" \
           "$NRO" \
           "$APP_HOSTPATH" \
+          "$DEVELOPMENT_HOSTNAME" \
+          "$RELEASE_HOSTNAME" \
+          "$PRODUCTION_HOSTNAME" \
+          "$BUILDER_VERSION" \
           "$GITHUB_REPOSITORY_NAME" \
           "$CONTAINER_PREFIX" \
           "$GITHUB_USER_EMAIL" \
@@ -38,4 +42,4 @@ jobs:
           "$MYSQL_PASSWORD" \
           "$STATELESS_BUCKET_LOCATION" \
           | ./configure.sh
-      - run: cd ~/planet4-nro-generator/ && printf "y\n" | make run-circleci
+      #- run: cd ~/planet4-nro-generator/ && printf "y\n" | make run-circleci
