@@ -42,4 +42,4 @@ jobs:
           "$MYSQL_PASSWORD" \
           "$STATELESS_BUCKET_LOCATION" \
           | ./configure.sh
-      #- run: cd ~/planet4-nro-generator/ && printf "y\n" | make run-circleci
+      - run: cd ~/planet4-nro-generator/ && printf "y\n" | make run-circleci
